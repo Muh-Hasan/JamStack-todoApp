@@ -1,2 +1,1 @@
-const wrapRootElement = require('./src/wrapper/wrap-root-element')
-exports.wrapRootElement = wrapRootElement
+export { default as wrapRootElement } from './src/wrapper/wrap-root-element'
