@@ -1,10 +1,9 @@
 import React from "react"
-import Input from '../components/Input'
 
 export default function Home() {
   return( 
     <div>
-      <Input />
+      <input>hello world</input>
     </div>
   )
 }
