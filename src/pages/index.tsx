@@ -35,7 +35,7 @@ export default function Home() {
   console.log(data)
 
   if (error) {
-    ;<h4>Error</h4>
+    <h4>Error</h4>
   }
   const handleSubmit = event => {
     event.preventDefault()
@@ -81,10 +81,10 @@ export default function Home() {
           <div className="loader">
             <CircularProgress />
           </div>
-        ) : data === undefined || null && data.allTask.length >= 1   ? (
+        ) : data !== undefined || null && data.allTask.length !== 0   ? (
           <div className="data-display">
             <div className="data-div">
-              {data.allTask.map((v, i) => (
+              {data.allTask.map((v: { text: React.ReactNode; id: string | number | readonly string[] }, i: React.Key) => (
                 <div key={i}>
                   <p>{v.text}</p>
                   <button value={v.id} onClick={handleDelete}>
