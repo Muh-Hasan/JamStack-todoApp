@@ -32,6 +32,7 @@ export default function Home() {
   const { loading, error, data } = useQuery(getTodos)
   const [deleteTask] = useMutation(deleteTodo)
   const [addTask] = useMutation(addTodo)
+  console.log(data)
 
   if (error) {
     ;<h4>Error</h4>
@@ -80,7 +81,7 @@ export default function Home() {
           <div className="loader">
             <CircularProgress />
           </div>
-        ) : (
+        ) : data.allTask.length >= 1 ? (
           <div className="data-display">
             <div className="data-div">
               {data.allTask.map((v, i) => (
@@ -92,6 +93,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        ) : (
+          <div className="no-task">
+            <h4>No Task for today</h4>
           </div>
         )}
       </div>
