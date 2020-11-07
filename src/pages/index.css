@@ -3,9 +3,9 @@
   margin: 0;
   font-family: "Work Sans", sans-serif;
 }
-body {
-  background-color: #eeeeee;
-}
+/* body {
+  background-color: ;
+} */
 .head {
   text-align: center;
   margin-top: 100px;
@@ -17,8 +17,6 @@ body {
 }
 .main {
   align-items: center;
-  display: flex;
-  flex-direction: column;
 }
 .input-div {
   height: 50px;
@@ -32,19 +30,59 @@ body {
   outline: none;
   font-size: 16px;
   margin-top: 10px;
-  flex: 0.7;
+  flex: 1.7;
   height: 30px;
   margin-bottom: 10px;
   margin-right: 10px;
 }
-.input-div button{
-    height: 35px;
+.input-div button {
+  height: 35px;
+  flex: 0.1;
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: 400;
+  background-color: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.input-main {
+  display: flex;
+  justify-content: center;
+}
+.data-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.data-div {
+  margin-top: 20px;
+  width: 400px;
+}
+.data-div div {
+  height: 50px;
+  background-color: #eeeeee;
+  display: flex;
+  margin-bottom: 10px;
+}
+.data-div p {
+  flex: 0.8;
+  margin-top: 12px;
+  margin-left: 5px;
+}
+.data-div button{
     flex: .1;
+    height: 30px;
     margin-top: 10px;
-    font-size: 25px;
-    font-weight: 400;
-    background-color: black;
     border: none;
-    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: transparent;
+    color: #E11900;
     cursor: pointer;
+    outline: none;
+}
+.loader{
+  text-align: center;
+  margin-top: 10px;
 }

@@ -51,7 +51,7 @@ const resolvers = {
         const result = await client.query(
           q.Create(q.Collection("todos"), { data: { text: text } })
         )
-        console.log(result.ref.id);
+        console.log(result.ref.id)
         return result.data
       } catch (error) {
         return error.toString()
