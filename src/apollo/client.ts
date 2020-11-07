@@ -3,7 +3,7 @@ import fetch from 'cross-fetch'
 
 export const client = new ApolloClient({
     link: new HttpLink({
-      uri: "/.netlify/functions/",
+      uri: "/.netlify/functions/todo",
       fetch,
     }),
     cache: new InMemoryCache(),
