@@ -70,28 +70,28 @@
   margin-top: 12px;
   margin-left: 5px;
 }
-.data-div button{
-    flex: .1;
-    height: 30px;
-    margin-top: 10px;
-    border: none;
-    font-size: 18px;
-    font-weight: 700;
-    background-color: transparent;
-    color: #E11900;
-    cursor: pointer;
-    outline: none;
+.data-div button {
+  flex: 0.1;
+  height: 30px;
+  margin-top: 10px;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: transparent;
+  color: #e11900;
+  cursor: pointer;
+  outline: none;
 }
-.loader{
+.loader {
   text-align: center;
   margin-top: 10px;
 }
 
-@media(max-width : 440px){
-  .input-div{
+@media (max-width: 440px) {
+  .input-div {
     width: 300px;
   }
-  .data-div{
+  .data-div {
     width: 300px;
   }
 }

@@ -77,7 +77,7 @@ export default function Home() {
       </div>
       <div>
         {loading ? (
-          <div className='loader'>
+          <div className="loader">
             <CircularProgress />
           </div>
         ) : (
