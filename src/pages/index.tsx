@@ -1,7 +1,7 @@
 import React , { useState } from "react"
 import { useMutation , useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
-import { TodayRounded } from "@material-ui/icons";
+import './index.css'
 
 const getTodos = gql`
   {
@@ -32,15 +32,12 @@ export default function Home() {
   const { loading , error , data } = useQuery(getTodos)
   const [deleteTask] = useMutation(deleteTodo);
   const [addTask] = useMutation(addTodo);
-console.log(data);
-
+  
   if(error){
-    console.log(error);
-    
+    <h4>Error</h4>
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (todo !== "") {
       addTask({
         variables: {
           text: todo,
@@ -48,7 +45,6 @@ console.log(data);
         refetchQueries: [{ query: getTodos }],
       });
       setTodo("");
-    }
   };
 
   const handleDelete = (event) => {
@@ -61,22 +57,25 @@ console.log(data);
       });
   }
   return( 
-    <div>
-      <div>
+    <div className='main'>
+      <div className='head'>
+        <h3>
+
         TODO APP
+        </h3>
       </div>
       <div>
-      <>
-        <input type='text' placeholder='type todo' onChange={(e) => setTodo(e.currentTarget.value)} required/>
+      <div className='input-div'>
+        <input type='text' placeholder='type todo' onChange={(e) => setTodo(e.currentTarget.value)} required value={todo}/>
         <button type='submit' onClick={handleSubmit}>+</button>
-      </>
+      </div>
       </div>
       <div>
         {loading ? <h4>loading</h4> : (
           <div>
             {data.allTask.map((v , i) => (
               <div key={i}>
-                <h5>{v.text}</h5>
+                <p>{v.text}</p>
                 <button value={v.id} onClick={handleDelete}>x</button>
               </div>
             ))}
