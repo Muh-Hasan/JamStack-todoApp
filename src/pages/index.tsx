@@ -1,6 +1,7 @@
 import React , { useState } from "react"
 import { useMutation , useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
+import { LocalFlorist } from "@material-ui/icons"
 
 const getTodos = gql`
   {
@@ -12,17 +13,72 @@ const getTodos = gql`
 `
 const addTodo = gql`
   mutation addTask($text: String!){
-    addTask(text : $text)
+    addTask(text : $text){
+      text
+    }
+  }
+`
+const deleteTodo = gql`
+  mutation delTask($id: ID!){
+    delTask(id : $id){
+      text
+    }
   }
 `
 
 export default function Home() {
+  
   const [todo , setTodo] = useState('')
+  const { loading , error , data } = useQuery(getTodos)
+  const [deleteTask] = useMutation(deleteTodo);
+  const [addTask] = useMutation(addTodo);
+console.log(data);
+
+  if(error){
+    console.log(error);
+    
+  }
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+      addTask({
+        variables: {
+          text: todo,
+        },
+        refetchQueries: [{ query: getTodos }],
+      });
+      setTodo("");
+  };
+  const handleDelete = (event) => {
+      console.log(JSON.stringify(event.currentTarget.value));
+      deleteTask({
+        variables: {
+          id: event.currentTarget.value,
+        },
+        refetchQueries: [{ query: getTodos }],
+      });
+  }
   return( 
     <div>
       <div>
-        <input type='text' placeholder='type todo' onChange={(e) => setTodo(e.currentTarget.value)} />
-        <button>+</button>
+        TODO APP
+      </div>
+      <div>
+      <>
+        <input type='text' placeholder='type todo' onChange={(e) => setTodo(e.currentTarget.value)} required/>
+        <button type='submit' onClick={handleSubmit}>+</button>
+      </>
+      </div>
+      <div>
+        {loading ? <h4>loading</h4> : (
+          <div>
+            {data.allTask.map((v , i) => (
+              <div key={i}>
+                <h5>{v.text}</h5>
+                <button value={v.id} onClick={handleDelete}>x</button>
+              </div>
+            ))}
+          </div>
+        )} 
       </div>
     </div>
   )

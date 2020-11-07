@@ -4,7 +4,7 @@ q = faunadb.query
 
 require("dotenv").config()
 
-const typDefs = gql`
+const typeDefs = gql`
   type Query {
     allTask: [Task]
   }
@@ -31,7 +31,7 @@ const resolvers = {
             q.Lambda(x => q.Get(x))
           )
         )
-        const data = result.map(t => {
+        const data = result.data.map(t => {
           return {
             id: t.ref.id,
             text: t.data.text,
@@ -48,8 +48,9 @@ const resolvers = {
   Mutation: {
     addTask: async (_, { text }) => {
       try {
+        console.log(text);
         const result = await client.query(
-          q.Create(q.Collection("todo"), { data: { text: text } })
+          q.Ref(q.Collection("todo"), { data: { text: text } })
         )
         return result.data
       } catch (error) {
