@@ -81,7 +81,7 @@ export default function Home() {
           <div className="loader">
             <CircularProgress />
           </div>
-        ) : data.allTask.length >= 1 ? (
+        ) : data.allTask.length >= 1 || data === undefined || null ? (
           <div className="data-display">
             <div className="data-div">
               {data.allTask.map((v, i) => (
