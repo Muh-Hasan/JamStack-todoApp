@@ -1,7 +1,7 @@
 import React , { useState } from "react"
 import { useMutation , useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
-import { LocalFlorist } from "@material-ui/icons"
+import { TodayRounded } from "@material-ui/icons";
 
 const getTodos = gql`
   {
@@ -12,12 +12,12 @@ const getTodos = gql`
   }
 `
 const addTodo = gql`
-  mutation addTask($text: String!){
-    addTask(text : $text){
+  mutation addTask($text: String!) {
+    addTask(text: $text) {
       text
     }
   }
-`
+`;
 const deleteTodo = gql`
   mutation delTask($id: ID!){
     delTask(id : $id){
@@ -38,8 +38,9 @@ console.log(data);
     console.log(error);
     
   }
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+    if (todo !== "") {
       addTask({
         variables: {
           text: todo,
@@ -47,7 +48,9 @@ console.log(data);
         refetchQueries: [{ query: getTodos }],
       });
       setTodo("");
+    }
   };
+
   const handleDelete = (event) => {
       console.log(JSON.stringify(event.currentTarget.value));
       deleteTask({

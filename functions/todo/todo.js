@@ -48,10 +48,10 @@ const resolvers = {
   Mutation: {
     addTask: async (_, { text }) => {
       try {
-        console.log(text);
         const result = await client.query(
-          q.Ref(q.Collection("todo"), { data: { text: text } })
+          q.Create(q.Collection("todos"), { data: { text: text } })
         )
+        console.log(result.ref.id);
         return result.data
       } catch (error) {
         return error.toString()
