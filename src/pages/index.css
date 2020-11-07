@@ -86,3 +86,12 @@
   text-align: center;
   margin-top: 10px;
 }
+
+@media(max-width : 440px){
+  .input-div{
+    width: 300px;
+  }
+  .data-div{
+    width: 300px;
+  }
+}
